@@ -1,0 +1,855 @@
+/*
+================================================================================
+|                                     HEADER                                   |
+================================================================================
+*/
+
+.header {
+    width: 100%;
+    min-width: $min-width;
+    text-align: left;
+    order: 1;
+    -webkit-order: 1;
+    background-color: $base-bg;
+    font-family: $base-font-family;
+    font-weight: 700;
+    padding-bottom: 30px;
+    &__info {
+        @include flex;
+        @include align-items(flex-start);
+        border-bottom: 1px solid $border-color;
+        padding: 20px 0 12px 10px;
+        padding-bottom: 8px;
+        padding-left: 10px;
+
+        .info {
+            @include inline-flex;
+            @include justify-content(space-between);
+            @include align-items(flex-direction);
+        }
+    }
+    &__mobinfo {
+        background-color: $mob-bg-color;
+        width: 100%;
+        position: relative;
+        @include flex;
+        @include justify-content(space-between);
+        @include align-items(flex-start);
+        flex-direction: column;
+        display: none;
+        .mob__menu {
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            background-color: $mob-bg-color;
+            @include flex;
+            @include justify-content(space-between);
+            @include align-items(flex-start);
+            display: none;
+        }
+        .moblist__form {
+            width: 52%;
+            left: -100vw;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            padding: 5px;
+            background-color: $mob-bg-color;
+            @include transition($default-transition);
+            &-active {
+                left: 0;
+                left: 45vw;
+            }
+            .input {
+                background-color: $mob-bg-color;
+            }
+        }
+        .mob__logo {
+            @include flex;
+            padding: 14px;
+            background-color: $white-color;
+            width: 100%;
+            display: none;
+        }
+        .menu-link {
+            z-index: 9;
+            @include inline-flex;
+            width: 55px;
+            height: 40px;
+            background-color: $mob-menu-color;
+            position: relative;
+            span,
+            span:before,
+            span:after {
+                display: block;
+                height: 2px;
+                width: 18px;
+                background-color: $white-color;
+                position: absolute;
+                left: 50%;
+                margin-left: -9px;
+                top: 50%;
+                margin-top: -1px;
+            }
+            span:before {
+                content: '';
+                margin-top: -6px;
+                transition: all 0.2s;
+            }
+            span:after {
+                content: '';
+                margin-top: 4px;
+                transition: all 0.2s;
+            }
+            &_active span {
+                background-color: transparent;
+                &:before {
+                    -webkit-transform: rotate(135deg);
+                    -ms-transform: rotate(135deg);
+                    -o-transform: rotate(135deg);
+                    transform: rotate(135deg);
+                    margin-top: 0;
+                }
+                ;
+                &:after {
+                    -webkit-transform: rotate(-45deg);
+                    -ms-transform: rotate(-135deg);
+                    -o-transform: rotate(-135deg);
+                    transform: rotate(-135deg);
+                    margin-top: 0;
+                }
+                ;
+            }
+        }
+    }
+    &__nav {
+        padding: 9px 15px 9px 10px;
+        border-bottom: 1px solid $border-color;
+        @include inline-flex;
+        @include justify-content(space-between);
+        @include align-items(center);
+        width: 100%;
+        position: relative;
+        .menu-img {
+            margin-right: 5px;
+        }
+        .down {
+            margin-left: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    .wrapper {
+        padding: 0;
+    }
+}
+
+.title {
+    text-transform: uppercase;
+    p {
+        color: $decor-color-bright;
+        font-weight: 700;
+        padding-left: 20px;
+    }
+}
+
+.dropdown {
+
+    @include inline-flex;
+    @include justify-content(center);
+    @include align-items(center);
+    &__menu,
+    &__submenu {
+        position: absolute;
+        top: 55px;
+        padding: 24px 0;
+        padding-top: 22px;
+        left: -2px;
+        border-radius: 3px;
+        box-shadow: 1.5px 2.598px 1px 0px rgba(108, 104, 104, 0.33);
+        background-color: $white-color;
+        z-index: 20;
+        width: auto;
+        max-width: 245px;
+        box-sizing: border-box;
+        display: none;
+    }
+    &__submenu {
+        top: -10px;
+        left: 101%;
+        width: auto;
+        max-width: 245px;
+        min-width: 245px;
+        padding: 8px 0 8px 0px;
+        .dropdown__item {
+            padding-left: 12px;
+        }
+    }
+
+    &__item {
+
+        color: $decor-color-bright;
+        position: relative;
+        width: 100%;
+        padding-left: 12px;
+        @include inline-flex;
+        @include justify-content(space-between); // @include align-items(center);
+        &:before {
+            content: '';
+            float: left;
+        }
+        &:hover {
+            background-color: $submenu-bg-color;
+        }
+        &-active {
+            background-color: $submenu-bg-color;
+        }
+        a {
+            @include font(15px, 15px, $submenu-color);
+            @include flex;
+            font-weight: 400;
+            width: 100%;
+            height: 100%;
+            padding: 7px;
+            clear: left;
+            padding-left: 4px;
+            span {
+                width: 10px;
+                height: 10px;
+                margin-right: 5px;
+                float: left;
+                clear: left;
+                display: table;
+                &:before {
+                    padding-right: 10px;
+                    content: url(../img/circle.png);
+                    float: left;
+                }
+            }
+        }
+    }
+    .arrow-left {
+        float: right;
+        width: 5px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+}
+
+.menu-list {
+    top: 0;
+    background-color: $white-color;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    z-index: 5;
+    padding-top: 50px;
+    @include flex;
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+    flex-direction: column;
+    left: -100%;
+    @include transition($default-transition);
+    padding-left: 20px;
+    &-active {
+        left: 0;
+    }
+    ul {
+        padding: 0;
+    }
+    .menu {
+        @include flex;
+        @include justify-content(flex-start);
+        @include align-items(flex-start);
+        flex-direction: column;
+        &__item {
+            padding: 10px 0;
+            a {
+                position: relative;
+
+                line-height: 30px;
+                .arrow-left {
+                    @include transition($default-transition);
+                    float: right;
+                    width: 5px;
+                    position: absolute;
+                    top: 50%;
+                    right: 20px;
+                }
+            }
+        }
+    }
+    .dropdown {
+        position: relative;
+        @include flex;
+        @include justify-content(flex-start);
+        @include align-items(flex-start);
+        flex-direction: column;
+        &__menu,
+        &__submenu {
+            position: relative;
+            top: 0;
+            padding: 0 0;
+            border-radius: 0;
+            box-shadow: none;
+            background-color: $white-color;
+            display: none;
+        }
+        &__submenu {
+            left: 20px;
+            width: auto;
+        }
+        &__item {
+            color: $decor-color-bright;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+            @include inline-flex;
+            @include justify-content(space-between);
+            @include align-items(center);
+            &:before {
+                content: '';
+                display: inline-block;
+            }
+
+            &:hover {
+                background-color: $white-color;
+            }
+            &-active {
+                background-color: $submenu-bg-color;
+            }
+            a {
+                @include font(15px, 19px, $submenu-color);
+                font-weight: 400;
+                width: 100%;
+                height: 100%;
+                @include flex;
+                clear: left;
+                padding: 8px;
+                @include transition($default-transition);
+                span {
+                    width: 10px;
+                    height: 10px;
+                    float: left;
+                    clear: left;
+                    margin-right: 5px;
+                    display: table;
+                    &:before {
+                        padding-right: 10px;
+                        content: url(../img/circle.png);
+                        float: left;
+                    }
+                }
+
+
+                &:hover {
+                    color: $menu-color;
+                    font-weight: bold;
+                }
+            }
+            .active {
+                color: $menu-color;
+                font-weight: bold;
+                .arrow-left {
+                    transform: rotate(90deg);
+                }
+            }
+            .sub {
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+.moblist {
+    @include inline-flex;
+    @include justify-content(space-around);
+    @include align-items(center);
+    width: 90%;
+    height: 40px;
+    position: relative;
+    &__link {
+        @include transition($default-transition);
+        display: block;
+        &:hover {
+            -webkit-filter: invert(50%);
+            /* Safari */
+            filter: invert(50%);
+        }
+    }
+}
+
+.logo {
+    margin-right: 44px;
+    &__img {
+        width: 100%;
+        display: block;
+        height: auto;
+        img {
+            width: 100%;
+        }
+    }
+
+    &__details {
+        font: 400 14px/26px $base-font-family;
+        color: $logo-color;
+        padding: 0;
+    }
+}
+
+.search-form {
+    border: 1px solid $light-color;
+    border-radius: 4px;
+    outline: 0;
+    width: 494px;
+    padding: 10px;
+    padding-right: 4px;
+    margin-top: -6px;
+    margin-right: 7%;
+    @include inline-flex;
+    .input {
+        border: none;
+        width: 95%;
+        @include font($base-font-size, $base-line-height, $light-color);
+        @include placeholder($light-color);
+    }
+
+    .search-button {
+        width: 20px;
+        height: 20px;
+        background: url(../img/search.png) no-repeat;
+        background-size: contain;
+        @include inline-flex;
+        border: none;
+        @include transition($default-transition);
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+.info {
+    &__number {
+        @include font(23px, 23px, $main-color);
+        padding-right: 16px;
+        padding-top: 5px;
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
+    &__details {}
+
+    &-details {
+        &__par {
+            padding: 0;
+            @include font($base-font-size, $base-line-height, $info-color);
+            &_decorated {
+                color: $decor-color;
+                padding: 0;
+            }
+        }
+    }
+}
+
+.menu {
+    @include inline-flex;
+    &__item {
+        padding-right: 24px;
+        @include inline-flex;
+        @include justify-content(center);
+        @include align-items(center);
+    }
+
+    &__link {
+        @include font(16px, 16px, $menu-color);
+        text-transform: uppercase;
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+.button-buy {
+    background: url(../img/basket.png) no-repeat;
+    width: 30px;
+    height: 23px;
+    @include transition($default-transition);
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.total {
+    @include inline-flex;
+    @include justify-content(space-around);
+    @include align-items(center);
+    margin-right: 10px;
+
+
+    &__info {
+        @include font(16px, 16px, $logo-color);
+        font-weight: 700;
+        display: inline-block;
+        margin-left: 6px;
+        margin-left: 4px;
+    }
+
+    &__sum {}
+}
+
+.buy-menu,
+.buy-menu-top {
+    @include inline-flex;
+    @include justify-content(space-between);
+    @include align-items(center);
+    width: 25%;
+    .auth {
+        @include inline-flex;
+        @include justify-content(space-between);
+        @include align-items(center);
+        .user {
+            padding-right: 10px;
+            width: 29px;
+            height: 17px;
+        }
+        .sign-in {
+            @include font(16px, 16px, $logo-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+}
+
+.buy-menu-top {
+    @include flex;
+    border-bottom: 1px solid $border-color;
+    @include justify-content(flex-end);
+    padding: 20px;
+    padding-top: 0;
+    display: none;
+}
+
+.amount {
+    font: 700 14px/26px $base-font-family;
+    padding: 2px 4px;
+    min-width: 24px;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background-color: $decor-color-bright;
+    color: $white-color;
+    @include inline-flex;
+    @include justify-content(center);
+    @include align-items(center);
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1250px) {
+    .search-form {
+        margin-right: 50px;
+    }
+    .header {
+        &__info {
+            border: none;
+            @include justify-content(space-between);
+            padding-right: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .menu {
+        &__link {
+            font-size: 13px;
+        }
+    }
+
+    .header {
+        &__info {
+            border: none;
+            @include justify-content(space-between);
+            padding-right: 20px;
+        }
+    }
+
+    .buy-menu {
+        display: none;
+    }
+
+    .buy-menu-top {
+        @include flex;
+        width: 100%;
+    }
+
+    .total {
+        .amount {
+            margin-right: 10px;
+        }
+        &__info {
+            margin-right: 20px;
+        }
+    }
+
+    .logo {
+        width: 195px;
+        &__img {
+            display: block;
+            height: auto;
+        }
+        &__details {
+            font: 400 12px/18px $base-font-family;
+            color: $logo-color;
+        }
+    }
+
+    .search-form {
+        width: 35%;
+        margin-right: 5px;
+    }
+}
+
+@media screen and (min-width: 992px) {}
+
+@media screen and (max-width: 991px) {
+    .header {
+        padding-bottom: 18px;
+        &__info {
+            padding-left: 30px;
+            padding-bottom: 0;
+            padding-right: 30px;
+        }
+        &__nav {
+            padding: 16px 30px 16px 30px;
+            @include justify-content(space-between);
+        }
+    }
+    .menu {
+        @include inline-flex;
+        @include justify-content(space-between);
+        width: 100%;
+        &__item {
+            padding-right: 24px;
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+    .logo {
+        width: 180px;
+        margin-right: 40px;
+    }
+    .search-form {
+        width: 30%;
+        padding: 7px 4px 7px 10px;
+        margin-top: 0;
+        margin-right: 30px;
+        .input {
+
+            @include font(10px, 10px, $light-color);
+        }
+        .search-button {
+            width: 10px;
+            height: 10px;
+        }
+    }
+
+    .info {
+
+        &__number {
+            @include font(15px, 15px, $main-color);
+            padding-right: 14px;
+            padding-top: 0;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+
+        &-details {
+            &__par {
+                padding: 0;
+                @include font(10px, 10px, $info-color);
+                &_decorated {
+                    @include font(10px, 10px, $decor-color);
+                    padding: 0;
+                }
+            }
+        }
+    }
+    .total {
+        padding-left: 5px;
+        .amount {
+            min-width: 20px;
+            height: 20px;
+            width: 20px;
+        }
+        &__info {
+            @include font(10px, 10px, $logo-color);
+            font-weight: 700;
+            display: inline-block;
+            margin-left: 6px;
+            margin-left: 2px;
+            margin-right: 15px;
+            padding: 0;
+        }
+    }
+    .amount {
+        font: 700 12px/14px $base-font-family;
+        min-width: 24px;
+        height: 24px;
+        width: 24px;
+    }
+    .button-buy {
+        background: url(../img/basket-sm.png) no-repeat;
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        padding-bottom: 0px;
+        @include transition($default-transition);
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+    .buy-menu,
+    .buy-menu-top {
+        padding-bottom: 8px;
+        padding-right: 30px;
+        .auth {
+            @include inline-flex;
+            @include justify-content(space-between);
+            @include align-items(center);
+            .user {
+                padding-right: 10px;
+            }
+            .sign-in {
+                @include font(12px, 14px, $logo-color);
+                font-weight: 700;
+                text-transform: uppercase;
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+        }
+    }
+
+    .title {
+        text-transform: uppercase;
+        p {
+            color: $decor-color-bright;
+            font-weight: 700; // padding: 0;
+            padding-left: 20px;
+        }
+    }
+    .dropdown {
+        &__menu,
+        &__submenu {
+            left: 30px;
+            padding: 16px 0 24px;
+        }
+        &__submenu {
+            top: -10px;
+            left: 101%;
+            width: auto;
+            max-width: 245px;
+            min-width: 245px;
+            padding: 6px 0 10px 0px;
+            .dropdown__item {
+                padding-left: 12px;
+            }
+        }
+
+        &__item {
+
+            color: $decor-color-bright;
+            position: relative;
+            width: 100%;
+            padding-left: 12px;
+            @include inline-flex;
+            @include justify-content(space-between);
+            &:before {
+                content: '';
+                float: left;
+            }
+            &:hover {
+                background-color: $submenu-bg-color;
+            }
+            &-active {
+                background-color: $submenu-bg-color;
+            }
+            a {
+                @include font(15px, 15px, $submenu-color);
+                font-weight: 400;
+                width: 100%;
+                height: 100%;
+                @include flex;
+                clear: left;
+                padding-left: 4px;
+                span {
+                    width: 10px;
+                    height: 10px;
+                    float: left;
+                    clear: left;
+                    margin-right: 5px;
+                    display: table;
+                    &:before {
+                        padding-right: 10px;
+                        content: url(../img/circle.png);
+                        float: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header {
+        padding: 0;
+        &__info {
+            display: none;
+        }
+        &__mobinfo {
+            @include flex;
+            .mob__menu {
+                @include flex;
+            }
+            .mob__logo {
+                @include flex;
+                padding: 12px 14px 14px 14px;
+                .logo {
+                    width: 190px;
+                    &__details {
+
+                        font: 400 12px/22px $base-font-family;
+                        color: $logo-color;
+                    }
+                }
+            }
+        }
+        &__nav {
+            display: none;
+        }
+    }
+
+    .buy-menu-top {
+        display: none;
+    }
+}
+
+
+// <!--[if IE 7]>
+//     <style type="text/css">
+//   dropdown {
+//    behavior: expression(
+// onmouseover = function() {this.className += ‘ hover’},
+// onmouseout = function() {this.className = this.className.replace(/ hover/g, »)},
+// style.behavior = null
+// )
+//   }
+//   </style>
+// <![endif]-->

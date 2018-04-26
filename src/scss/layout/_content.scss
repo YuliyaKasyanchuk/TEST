@@ -1,0 +1,367 @@
+//main styles
+html {
+    width: 100%;
+    cursor: pointer;
+}
+
+body {
+    width: 100%;
+    font-family: $base-font-family;
+}
+
+.main-wrapper {
+    padding: 0 0 0 0;
+    min-width: $min-width;
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100%;
+    @include flex;
+    @include flex-direction(column);
+    @include justify-content(flex-start);
+}
+
+.wrapper {
+    min-width: $min-width;
+    max-width: $max-width;
+    padding: 0 20px 0 20px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+
+
+/* titles */
+
+p {
+    @include font($base-font-size, $base-line-height, $text-color);
+    padding: 10px 0 10px 0;
+    font-weight: 400;
+}
+
+h1 {
+    @include font($font-size-h1, $line-height-h1, $title-color);
+    padding: 15px 0 15px 0;
+    font-weight: 400;
+}
+
+h2 {
+    @include font($font-size-h2, $line-height-h2, $title-color);
+    padding: 15px 0 15px 0;
+    font-weight: 400;
+}
+
+h3 {
+    @include font($font-size-h3, $line-height-h3, $title-color); // font-family: $title-font-family;
+    padding: 15px 0 15px 0;
+    font-weight: 400;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+button {
+    border: none;
+}
+
+
+
+
+/* text position */
+
+.text-left {
+    text-align: left!important
+}
+
+.text-center {
+    text-align: center!important
+}
+
+.text-right {
+    text-align: right!important
+}
+
+.nowrap {
+    white-space: nowrap!important;
+}
+
+
+
+
+
+/* loader */
+
+.loaded .main-wrapper {
+    visibility: hidden;
+}
+
+.icon-load {
+    background: url(../img/loader.gif) no-repeat left top;
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -20px;
+    margin-left: -20px;
+    display: none;
+}
+
+.loaded .icon-load {
+    display: block;
+}
+
+
+
+
+
+/*
+================================================================================
+|                                     CONTENT                                 |
+================================================================================
+*/
+
+.content {
+    min-width: $min-width;
+    text-align: left;
+    width: 100%;
+    order: 2;
+    -webkit-order: 2;
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    background: $white-color;
+}
+
+.arrow-with-color {
+    filter: contrast(50%) sepia(100%) hue-rotate(5deg) brightness(0.8) saturate(500%);
+}
+
+// SLIDER
+.slick-slider {
+    width: 100%;
+    max-width: 1356px;
+    height: 328px;
+    margin: 0 auto;
+    &__item {
+        width: 100%;
+        height: 328px;
+        position: relative;
+        @include flex;
+        @include justify-content(space-between);
+        @include align-items(center);
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .promo {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 70px;
+            background-color: $decor-color;
+            opacity: 0.8;
+            height: 130px;
+            padding: 0 34px;
+            padding-right: 38px;
+            &__details {
+                font: 400 43px/48px $base-font-family;
+                color: $white-color;
+            }
+        }
+    }
+    &__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+        cursor: pointer;
+        background-color: $decor-color;
+        color: $white-color;
+        opacity: 0.8;
+        width: 39px;
+        height: 130px;
+        @include transition($default-transition);
+        &:hover {
+            background-color: $white-color;
+        }
+    }
+    &__dots {
+        text-align: center;
+        li {
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            background-color: $light-decor-color;
+            display: inline-block;
+            text-align: center;
+            margin: 46px 10px 0 10px;
+            margin-top: 46px;
+            button {
+                background-color: transparent;
+                content: '';
+                color: transparent;
+                @include flex;
+                @include align-items(center);
+                @include justify-content(center);
+            }
+        }
+    }
+
+
+    .prev {
+        left: 0;
+        background: transparent url(../img/arrow-prev-white.png) no-repeat;
+        background-position: 40% 50%;
+        background-color: $decor-color;
+
+        &:hover {
+            background: url(../img/arrow-prev-color.png) no-repeat;
+            background-color: $white-color;
+            background-position: 50%;
+        }
+    }
+    .next {
+        right: 0;
+        background: transparent url(../img/arrow-next-white.png) no-repeat;
+        background-position: 50%;
+        background-color: $decor-color;
+        &:hover {
+            background: url(../img/arrow-next.png) no-repeat;
+            background-color: $white-color;
+            background-position: 50%;
+        }
+    }
+    li.slick-active {
+        background-color: $decor-color-bright;
+    }
+}
+
+
+
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+    body {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .slick-slider {
+        width: 100%;
+        max-width: 740px;
+        height: 170px;
+        &__arrow {
+            width: 20px;
+            height: 70px;
+        }
+        &__item {
+            height: 170px;
+            .promo {
+                width: 290px;
+                height: 70px;
+                padding: 0 15px;
+                padding-right: 0;
+                left: 40px;
+                &__details {
+                    font: 400 23px/23px $base-font-family;
+                    color: $white-color;
+                    padding: 0;
+                }
+            }
+        }
+        &__dots {
+            li {
+                display: none;
+            }
+        }
+        .prev {
+            left: 0;
+            background: transparent url(../img/prev-sm.png) no-repeat;
+            background-position: 50% 50%;
+            background-color: $decor-color;
+
+            &:hover {
+                background: url(../img/prev-col-sm.png) no-repeat;
+                background-color: $white-color;
+                background-position: 50%;
+            }
+        }
+        .next {
+            right: 0;
+            background: transparent url(../img/next-sm.png) no-repeat;
+            background-position: 50%;
+            background-color: $decor-color;
+            &:hover {
+                background: url(../img/next-col-sm.png) no-repeat;
+                background-color: $white-color;
+                background-position: 50%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .slick-slider {
+
+        height: 125px;
+        &__arrow {
+            width: 20px;
+            height: 30px;
+        }
+        &__item {
+            height: 125px;
+            .promo {
+                width: 190px;
+                height: auto;
+                padding: 0 4px;
+                left: 30px;
+                &__details {
+                    font: 400 15px/15px $base-font-family;
+                    padding: 6px 1px;
+                }
+            }
+        }
+        &__dots {
+            li {
+                display: none;
+            }
+        }
+        .prev {
+            left: 0;
+            background: transparent url(../img/prev-sm.png) no-repeat;
+            background-position: 50% 50%;
+            background-color: $decor-color;
+
+            &:hover {
+                background: url(../img/prev-col-sm.png) no-repeat;
+                background-color: $white-color;
+                background-position: 50%;
+            }
+        }
+        .next {
+            right: 0;
+            background: transparent url(../img/next-sm.png) no-repeat;
+            background-position: 50%;
+            background-color: $decor-color;
+            &:hover {
+                background: url(../img/next-col-sm.png) no-repeat;
+                background-color: $white-color;
+                background-position: 50%;
+            }
+        }
+    }
+}
